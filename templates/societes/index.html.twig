@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SocietesController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	
+		<pre>
+    {# {{ dump(societeAll) }} #}
+    {# {{ dump(adresseAll) }} #}
+</pre>
+            <h5 class="text-center mb-5">
+                {{title}}
+            </h5>
+
+		<table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Siren</th>
+                    <th>Ville d'immatriculation</th>
+                    <th>Date d'immatricumation</th>
+                    <th>Capital</th>
+                    <th>Libelle</th>
+                    <th>N°</th>
+                    <th>Type de voie</th>
+                    <th>Nom de la voie</th>
+                    <th>Ville</th>
+                    <th>Cp</th>
+                    <th>date mise à jour</th>
+                    <th>Action</th>
+                </tr>   
+            </thead>
+            <tbody>
+			{% for adresse in adresseAll %}
+                <tr>
+				<td>{{adresse.societe.id}}</td>
+                <td>{{adresse.societe.nom}}</td>
+                <td>{{adresse.societe.siren}}</td>
+                <td>{{adresse.societe.villeimmatriculation}}</td>
+                <td>{{adresse.societe.dateimmatriculation|date("d/m/Y H:i", "Europe/Paris")}}</td>
+                <td>{{adresse.societe.capital}}</td>
+                <td>{{adresse.societe.libelle}}</td>
+                <td>{{adresse.numero}}</td>
+                <td>{{adresse.typevoie}}</td>
+                <td>{{adresse.nomvoie}}</td>
+                <td>{{adresse.ville}}</td>
+                <td>{{adresse.cp}}</td>
+                <td>{{adresse.createdat | date("d/m/Y H:i", "Europe/Paris")}}</td>
+                <td>
+                    <a href="{{path('societe_edit',{'id': adresse.societe.id})}}"><i class="fa fa-edit"></i></a>
+                </td>
+                </tr>
+			{% endfor %}
+            </tbody>
+		</table>
+
+{% endblock %}
